@@ -5,7 +5,7 @@
 
 
 void InitElectricShot() {
-	(void)printf("--- Electic Shock initialized ---");
+	(void)printf("--- Electic Shock initialized ---\r\n");
 
 	// Add here RaspberryPi logic
 }
