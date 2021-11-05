@@ -9,26 +9,15 @@
 #include <azure_c_shared_utility/crt_abstractions.h>
 #include <azure_c_shared_utility/shared_util_options.h>
 
+#include "electric_shock.h"
+
 /* --- Connection Protocol --- */
 
 #define PROTOCOL_MQTT
-//#define PROTOCOL_MQTT_OVER_WEBSOCKETS
-//#define PROTOCOL_HTTP
 
 #ifdef PROTOCOL_MQTT
 #include "iothubtransportmqtt.h"
 #endif // PROTOCOL_MQTT
-
-#ifdef PROTOCOL_MQTT_OVER_WEBSOCKETS
-#include "iothubtransportmqtt_websockets.h"
-#endif // PROTOCOL_MQTT_OVER_WEBSOCKETS
-
-#ifdef PROTOCOL_HTTP
-#include "iothubtransporthttp.h"
-#endif // PROTOCOL_HTTP
-
-
-#include "electric_shock.h"
 
 /* --- Variables --- */
 
@@ -98,14 +87,6 @@ int main(void) {
 	protocol = MQTT_Protocol;
 #endif // PROTOCOL_MQTT
 
-#ifdef PROTOCOL_MQTT_OVER_WEBSOCKETS
-	protocol = MQTT_WebSocket_Protocol;
-#endif // PROTOCOL_MQTT_OVER_WEBSOCKETS
-
-#ifdef PROTOCOL_HTTP
-	protocol = HTTP_Protocol;
-#endif // PROTOCOL_HTTP
-
 	// Init IoTHub SUbsystem
 	(void)IoTHub_Init();
 
@@ -120,12 +101,7 @@ int main(void) {
 	else {
 		(void)printf("Connection Success\r\n");
 
-#ifndef PROTOCOL_HTTP
-		bool traceOn = false;
-		IoTHubDeviceClient_LL_SetOption(device_ll_handle, OPTION_LOG_TRACE, &traceOn);
-#endif // PROTOCOL_HTTP
-
-#if defined PROTOCOL_MQTT || defined PROTOCOL_MQTT_OVER_WEBSOCKETS
+#if defined PROTOCOL_MQTT
 		bool urlEncodeOn = true;
 		(void)IoTHubDeviceClient_LL_SetOption(device_ll_handle, OPTION_AUTO_URL_ENCODE_DECODE, &urlEncodeOn);
 #endif 
