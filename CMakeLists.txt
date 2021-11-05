@@ -7,7 +7,7 @@ endif()
 include_directories("/usr/local/include/azureiot"
                     "/usr/local/include/azureiot/inc/")
 
-set(SOURCE iot-device-1.c parson.c parson.h electric_shock.h electric_shock.c)
+set(SOURCE iot-device.c parson.c parson.h electric_shock.h electric_shock.c)
 add_executable(iot-device-quiz ${SOURCE})
 target_link_libraries(iot-device-quiz 
                           serializer
