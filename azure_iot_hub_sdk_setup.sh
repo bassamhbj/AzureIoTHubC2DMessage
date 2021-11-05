@@ -5,9 +5,9 @@ echo "Setting up Environment for IoTHub SDK...."
 sudo apt-get update
 sudo apt-get install -y libssl-dev git cmake build-essential curl libcurl4-openssl-dev uuid-dev
 
-cd ~
-mkdir AIQuizIoTHub
-cd AIQuizIoTHub
+#cd ~
+#mkdir AIQuizIoTHub
+#cd AIQuizIoTHub
 
 git clone -b LTS_07_2021_Ref01 https://github.com/Azure/azure-iot-sdk-c.git
 cd azure-iot-sdk-c
